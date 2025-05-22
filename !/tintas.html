@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Negrão - Tintas em Oferta</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    .top-bar {
+      background-color: black;
+      color: white;
+      font-size: 14px;
+      padding: 5px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .top-bar div {
+      padding: 4px 10px;
+      background-color: black;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .top-bar div:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #e6e6e6;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .logo img {
+      height: 90px;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      margin: 0 30px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .icons {
+      display: flex;
+      gap: 20px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .icons a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav {
+      background-color: #f0f0f0;
+      padding: 12px 30px;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav div {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: transparent;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav div:hover {
+      background-color: #d9d9d9;
+      color: #000;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px 30px 60px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 220px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      flex-grow: 1;
+      margin-top: 10px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .product-info p {
+      font-size: 14px;
+      color: #555;
+      margin: 0 0 10px 0;
+      min-height: 40px;
+    }
+
+    .price-old {
+      text-decoration: line-through;
+      color: #a0a0a0;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: #008000;
+      font-size: 16px;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #e74c3c;
+      color: white;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 6px;
+      user-select: none;
+    }
+
+    .add-btn {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-top: auto;
+    }
+
+    .add-btn:hover {
+      background-color: #1c5980;
+    }
+
+    #confirm {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #27ae60;
+      color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    @media (max-width: 600px) {
+      .products {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div>Campinas | Lojas</div>
+    <div>Precisa de ajuda?</div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo Negrão" />
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Procure tintas e descontos..." />
+    </div>
+    <div class="icons">
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="carrinho.html"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <nav>
+    <div>Departamentos</div>
+    <div>Ofertas</div>
+    <div>Novidades</div>
+    <div>Serviços</div>
+    <div>Empresas</div>
+  </nav>
+
+  <div class="content">
+    <div class="section-title">Tintas com Desconto</div>
+    <div class="products" id="productsContainer"></div>
+  </div>
+
+  <div id="confirm">Produto adicionado ao carrinho!</div>
+
+<script>
+  const products = [
+    {
+      id: 101,
+      name: "Tinta Acrílica Premium 18L",
+      price: 299.90,
+      oldPrice: 399.90,
+      desc: "Tinta acrílica lavável com alto rendimento.",
+      discount: 25,
+      img: "https://via.placeholder.com/300x200/3498db/fff?text=Tinta+Acrílica+18L"
+    },
+    {
+      id: 102,
+      name: "Tinta Látex Fosca 3,6L",
+      price: 89.90,
+      oldPrice: 119.90,
+      desc: "Acabamento fosco, ideal para interiores.",
+      discount: 25,
+      img: "https://via.placeholder.com/300x200/e67e22/fff?text=Tinta+Látex+3,6L"
+    },
+    {
+      id: 103,
+      name: "Tinta Epóxi 900ml",
+      price: 49.90,
+      oldPrice: 54.89,
+      desc: "Para superfícies metálicas e industriais.",
+      discount: 10,
+      img: "https://via.placeholder.com/300x200/2ecc71/fff?text=Tinta+Epóxi+900ml"
+    },
+    {
+      id: 104,
+      name: "Spray Tinta Spray Automotiva",
+      price: 29.90,
+      oldPrice: 39.90,
+      desc: "Ideal para retoques e acabamentos precisos.",
+      discount: 25,
+      img: "https://via.placeholder.com/300x200/e74c3c/fff?text=Tinta+Spray"
+    },
+    {
+      id: 105,
+      name: "Tinta Esmalte Sintético 3,6L",
+      price: 109.90,
+      oldPrice: 149.90,
+      desc: "Durável e brilhante para madeiras e metais.",
+      discount: 27,
+      img: "https://via.placeholder.com/300x200/9b59b6/fff?text=Tinta+Esmalte+3,6L"
+    },
+    {
+      id: 106,
+      name: "Tinta Spray Fosca 400ml",
+      price: 24.90,
+      oldPrice: 28.63,
+      desc: "Acabamento fosco, resistente à água.",
+      discount: 15,
+      img: "https://via.placeholder.com/300x200/34495e/fff?text=Tinta+Spray+Fosca"
+    },
+    {
+      id: 107,
+      name: "Tinta Acrílica Branca 3,6L",
+      price: 99.90,
+      oldPrice: 129.90,
+      desc: "Acabamento acetinado, fácil de aplicar.",
+      discount: 23,
+      img: "https://via.placeholder.com/300x200/1abc9c/fff?text=Tinta+Acrílica+Branca"
+    },
+    {
+      id: 108,
+      name: "Tinta Fosca Azul 3,6L",
+      price: 99.90,
+      oldPrice: 119.90,
+      desc: "Ideal para quartos e salas.",
+      discount: 16,
+      img: "https://via.placeholder.com/300x200/2980b9/fff?text=Tinta+Fosca+Azul"
+    },
+  
+    {
+      id: 109,
+      name: "Tinta Esmalte Sintético Branca 3,6L",
+      price: 115.90,
+      oldPrice: 145.90,
+      desc: "Brilho intenso para superfícies de madeira.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/f1c40f/fff?text=Esmalte+Branco"
+    },
+    {
+      id: 110,
+      name: "Tinta Acrílica Fosca 18L",
+      price: 280.00,
+      oldPrice: 350.00,
+      desc: "Cobertura fosca e resistente.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/16a085/fff?text=Acrílica+Fosca+18L"
+    },
+    {
+      id: 111,
+      name: "Tinta Látex Semi-Brilho 3,6L",
+      price: 98.90,
+      oldPrice: 130.00,
+      desc: "Ideal para áreas internas com leve brilho.",
+      discount: 24,
+      img: "https://via.placeholder.com/300x200/8e44ad/fff?text=Látex+Semi-Brilho"
+    },
+    {
+      id: 112,
+      name: "Tinta Epóxi Industrial 5L",
+      price: 189.90,
+      oldPrice: 239.90,
+      desc: "Alta resistência para ambientes industriais.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/27ae60/fff?text=Epóxi+Industrial"
+    },
+    {
+      id: 113,
+      name: "Spray Tinta Automotiva Vermelha",
+      price: 34.90,
+      oldPrice: 44.90,
+      desc: "Acabamento perfeito para retoques.",
+      discount: 22,
+      img: "https://via.placeholder.com/300x200/c0392b/fff?text=Spray+Vermelho"
+    },
+    {
+      id: 114,
+      name: "Tinta Acrílica Azul Marinho 3,6L",
+      price: 95.90,
+      oldPrice: 120.00,
+      desc: "Cor intensa e durável.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/2c3e50/fff?text=Acrílica+Azul+Marinho"
+    },
+    {
+      id: 115,
+      name: "Tinta Fosca Verde 3,6L",
+      price: 92.90,
+      oldPrice: 110.00,
+      desc: "Ideal para ambientes residenciais.",
+      discount: 15,
+      img: "https://via.placeholder.com/300x200/27ae60/fff?text=Tinta+Fosca+Verde"
+    },
+    {
+      id: 116,
+      name: "Tinta Spray Branca 400ml",
+      price: 25.90,
+      oldPrice: 35.90,
+      desc: "Acabamento fosco, fácil aplicação.",
+      discount: 28,
+      img: "https://via.placeholder.com/300x200/ecf0f1/333?text=Spray+Branco"
+    },
+    {
+      id: 117,
+      name: "Tinta Acrílica Vermelha 3,6L",
+      price: 105.00,
+      oldPrice: 130.00,
+      desc: "Acabamento acetinado com alta cobertura.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/e74c3c/fff?text=Acrílica+Vermelha"
+    },
+    {
+      id: 118,
+      name: "Tinta Látex Azul Claro 3,6L",
+      price: 97.00,
+      oldPrice: 120.00,
+      desc: "Cor suave para ambientes internos.",
+      discount: 19,
+      img: "https://via.placeholder.com/300x200/3498db/fff?text=Látex+Azul+Claro"
+    },
+    {
+      id: 119,
+      name: "Tinta Esmalte Sintético Preto 3,6L",
+      price: 120.90,
+      oldPrice: 150.00,
+      desc: "Acabamento brilhante para metais.",
+      discount: 19,
+      img: "https://via.placeholder.com/300x200/000000/fff?text=Esmalte+Preto"
+    },
+    {
+      id: 120,
+      name: "Tinta Epóxi Branco 5L",
+      price: 210.00,
+      oldPrice: 260.00,
+      desc: "Alta resistência e durabilidade.",
+      discount: 19,
+      img: "https://via.placeholder.com/300x200/ffffff/000?text=Epóxi+Branco"
+    },
+    {
+      id: 121,
+      name: "Spray Tinta Fosca Cinza 400ml",
+      price: 27.90,
+      oldPrice: 36.90,
+      desc: "Resistente e com acabamento fosco.",
+      discount: 24,
+      img: "https://via.placeholder.com/300x200/7f8c8d/fff?text=Spray+Cinza"
+    },
+    {
+      id: 122,
+      name: "Tinta Acrílica Amarela 3,6L",
+      price: 99.00,
+      oldPrice: 125.00,
+      desc: "Cor vibrante e duradoura.",
+      discount: 20,
+      img: "https://via.placeholder.com/300x200/f1c40f/000?text=Acrílica+Amarela"
+    },
+    {
+      id: 123,
+      name: "Tinta Látex Vermelha 18L",
+      price: 315.00,
+      oldPrice: 380.00,
+      desc: "Alta cobertura para grandes áreas.",
+      discount: 17,
+      img: "https://via.placeholder.com/300x200/e74c3c/fff?text=Látex+Vermelha+18L"
+    },
+    {
+      id: 124,
+      name: "Tinta Esmalte Sintético Verde 3,6L",
+      price: 110.00,
+      oldPrice: 135.00,
+      desc: "Acabamento brilhante e durável.",
+      discount: 18,
+      img: "https://via.placeholder.com/300x200/27ae60/fff?text=Esmalte+Verde"
+    },
+    {
+      id: 125,
+      name: "Tinta Spray Azul 400ml",
+      price: 26.50,
+      oldPrice: 34.90,
+      desc: "Acabamento brilhante e secagem rápida.",
+      discount: 24,
+      img: "https://via.placeholder.com/300x200/2980b9/fff?text=Spray+Azul"
+    }
+  ];
+
+  const productsContainer = document.getElementById("productsContainer");
+  const confirm = document.getElementById("confirm");
+
+  function formatPrice(value) {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function showConfirmation() {
+    confirm.style.display = "block";
+    setTimeout(() => {
+      confirm.style.display = "none";
+    }, 2500);
+  }
+
+  function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+   
+    const exists = cart.find(item => item.id === product.id);
+    if (!exists) {
+      cart.push({...product, quantity: 1});
+    } else {
+      exists.quantity++;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showConfirmation();
+  }
+
+  function renderProducts(filterText = "") {
+    productsContainer.innerHTML = "";
+    const filtered = products.filter(p => p.name.toLowerCase().includes(filterText.toLowerCase()));
+    filtered.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      let discountBadge = "";
+      if (product.discount > 0) {
+        discountBadge = `<div class="discount-badge">${product.discount}% OFF</div>`;
+      }
+
+      card.innerHTML = `
+        ${discountBadge}
+        <img src="${product.img}" alt="${product.name}" />
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.desc}</p>
+          <div>
+            ${product.oldPrice ? `<span class="price-old">${formatPrice(product.oldPrice)}</span>` : ""}
+            <span class="product-price">${formatPrice(product.price)}</span>
+          </div>
+        </div>
+        <button class="add-btn" aria-label="Adicionar ${product.name} ao carrinho">Comprar</button>
+      `;
+
+      card.querySelector(".add-btn").addEventListener("click", () => addToCart(product));
+
+      productsContainer.appendChild(card);
+    });
+  }
+
+
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    renderProducts(e.target.value);
+  });
+
+  renderProducts();
+</script>
+<script>
+  const container = document.getElementById('productsContainer');
+  const confirmBox = document.getElementById('confirm');
+
+  function renderProducts() {
+    container.innerHTML = '';
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      card.innerHTML = `
+        ${product.discount > 0 ? `<div class="discount-badge">-${product.discount}%</div>` : ''}
+        <img src="${product.img}" alt="${product.name}">
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.desc}</p>
+          <div>
+            ${product.oldPrice ? `<span class="price-old">R$ ${product.oldPrice.toFixed(2)}</span>` : ''}
+            <span class="product-price">R$ ${product.price.toFixed(2)}</span>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addToCart(${product.id})">Comprar</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function addToCart(id) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemIndex = cart.findIndex(p => p.id === id);
+
+    if (itemIndex >= 0) {
+      cart[itemIndex].quantity += 1;
+    } else {
+      const product = products.find(p => p.id === id);
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showConfirm();
+  }
+
+  function showConfirm() {
+    confirmBox.style.display = 'block';
+    setTimeout(() => {
+      confirmBox.style.display = 'none';
+    }, 2000);
+  }
+
+  // Inicializa os produtos na tela
+  renderProducts();
+</script>
+
+
+</body>
+</html>
