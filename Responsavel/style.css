@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #1b4f72, #283e51);
+    padding: 30px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #f1c40f;
+  }
+  
+  .cadastro-item, .notificacao-item, .historico-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease-in-out; /* Suaviza a transição */
+  }
+  
+  .cadastro-item.show, .notificacao-item.show, .historico-item.show {
+    opacity: 1; /* Torna visível */
+  }
+  
+  .cadastro-item span, .notificacao-item span, .historico-item span {
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #f1c40f;
+    color: #1b4f72;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #d4ac0d;
+  }
+  
+  .mensagem {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .vazio {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+  }
+  
+  #cadastrosLista, #notificacoesLista, #historicoLista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os itens */
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #f1c40f;
+    color: #1b4f72;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #d4ac0d;
+  }
+  
+  .mensagem {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
