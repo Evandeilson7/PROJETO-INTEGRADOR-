@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel do Responsável</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #1b4f72, #283e51);
+      padding: 30px;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #f1c40f;
+    }
+
+    .cadastro-item, .notificacao-item, .historico-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .cadastro-item.show, .notificacao-item.show, .historico-item.show {
+      opacity: 1;
+    }
+
+    .cadastro-item span, .notificacao-item span, .historico-item span {
+      font-size: 16px;
+      color: #fff;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #f1c40f;
+      color: #1b4f72;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d4ac0d;
+    }
+
+    .mensagem {
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .vazio {
+      text-align: center;
+      font-style: italic;
+      color: #ccc;
+    }
+
+    #cadastrosLista, #notificacoesLista, #historicoLista {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input {
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    th {
+      background-color: rgba(241, 196, 15, 0.3);
+    }
+
+    input::placeholder {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Painel do Responsável</h1>
+
+    <h2>Cadastros Realizados</h2>
+    <div id="cadastrosLista"></div>
+
+    <h2>Solicitações Pendentes</h2>
+    <div id="notificacoesLista"></div>
+
+    <h2>Histórico de Remoções</h2>
+    <div id="historicoLista"></div>
+
+    <h2>Cadastro de Clientes</h2>
+    <form id="formCliente" onsubmit="event.preventDefault(); salvarCliente();">
+      <input type="text" id="nome" placeholder="Nome" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="telefone" placeholder="Telefone" required>
+      <button type="submit">Salvar</button>
+    </form>
+
+    <h3>Lista de Clientes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaClientes"></tbody>
+    </table>
+
+    <div class="mensagem" id="mensagem"></div>
+  </div>
+
+  <script>
+    function carregarTudo() {
+      carregarCadastros();
+      carregarNotificacoes();
+      carregarHistorico();
+      carregarClientes();
+    }
+
+    function carregarCadastros() {
+      let cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+      const lista = document.getElementById("cadastrosLista");
+      lista.innerHTML = "";
+
+      if (cadastros.length === 0) {
+        lista.innerHTML = "<p class='vazio'>Nenhum cadastro disponível.</p>";
+        return;
+      }
+
+      cadastros.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "cadastro-item";
+        div.innerHTML = `
+          <span>${item[0]} — ${item[1]} | CPF: ${item[2]} | Setor: ${item[3]}</span>
+          <button onclick="removerCadastro(${index})">Remover</button>
+        `;
+        lista.appendChild(div);
+        setTimeout(() => div.classList.add('show'), 100);
+      });
+    }
+
+    function carregarNotificacoes() {
+      let notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+      const lista = document.getElementById("notificacoesLista");
+      lista.innerHTML = "";
+
+      if (notificacoes.length === 0) {
+        lista.innerHTML = "<p class='vazio'>Nenhuma solicitação pendente.</p>";
+        return;
+      }
+
+      notificacoes.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "notificacao-item";
+        div.innerHTML = `
+          <span>${item.nome} solicitou função <strong>${item.funcao}</strong> em ${item.data}</span>
+          <button onclick="aprovarCadastro(${index})">Aprovar</button>
+          <button onclick="removerNotificacao(${index})">Remover</button>
+        `;
+        lista.appendChild(div);
+        setTimeout(() => div.classList.add('show'), 100);
+      });
+    }
+
+    function carregarHistorico() {
+      let historico = JSON.parse(localStorage.getItem("historico")) || [];
+      const lista = document.getElementById("historicoLista");
+      lista.innerHTML = "";
+
+      if (historico.length === 0) {
+        lista.innerHTML = "<p class='vazio'>Nenhuma remoção registrada.</p>";
+        return;
+      }
+
+      historico.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "historico-item";
+        div.innerHTML = `
+          <span>${item.nome} foi removido — Função: ${item.funcao} | CPF: ${item.cpf} | Setor: ${item.setor}</span>
+        `;
+        lista.appendChild(div);
+        setTimeout(() => div.classList.add('show'), 100);
+      });
+    }
+
+    function aprovarCadastro(index) {
+      let notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+      let cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+
+      const itemAprovado = notificacoes[index];
+      cadastros.push([itemAprovado.nome, itemAprovado.funcao, itemAprovado.cpf, itemAprovado.sexo]);
+      localStorage.setItem("cadastros", JSON.stringify(cadastros));
+
+      notificacoes.splice(index, 1);
+      localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+
+      carregarTudo();
+
+      const msg = document.getElementById("mensagem");
+      msg.innerText = `Cadastro de ${itemAprovado.nome} aprovado!`;
+      msg.style.color = "#2ecc71";
+    }
+
+    function removerNotificacao(index) {
+      let notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+      notificacoes.splice(index, 1);
+      localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+      carregarTudo();
+      const msg = document.getElementById("mensagem");
+      msg.innerText = "Notificação removida.";
+      msg.style.color = "#ff5e57";
+    }
+
+    function removerCadastro(index) {
+      let cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+      let historico = JSON.parse(localStorage.getItem("historico")) || [];
+
+      const itemRemovido = cadastros[index];
+      historico.push({
+        nome: itemRemovido[0],
+        funcao: itemRemovido[1],
+        cpf: itemRemovido[2],
+        setor: itemRemovido[3]
+      });
+
+      localStorage.setItem("historico", JSON.stringify(historico));
+      cadastros.splice(index, 1);
+      localStorage.setItem("cadastros", JSON.stringify(cadastros));
+      carregarTudo();
+      const msg = document.getElementById("mensagem");
+      msg.innerText = "Cadastro removido e transferido para o histórico.";
+      msg.style.color = "#ff5e57";
+    }
+
+    // CLIENTES
+    function carregarClientes() {
+      const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      const tabela = document.getElementById("tabelaClientes");
+      tabela.innerHTML = "";
+
+      clientes.forEach(cliente => {
+        const linha = tabela.insertRow();
+        linha.insertCell(0).innerText = cliente.nome;
+        linha.insertCell(1).innerText = cliente.email;
+        linha.insertCell(2).innerText = cliente.telefone;
+        const acoes = linha.insertCell(3);
+        acoes.innerHTML = `
+          <button onclick="editarCliente(${cliente.id})">Editar</button>
+          <button onclick="excluirCliente(${cliente.id})">Excluir</button>
+        `;
+      });
+    }
+
+    function salvarCliente() {
+      let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      const idEdicao = localStorage.getItem("clienteEmEdicao");
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const telefone = document.getElementById("telefone").value;
+
+      if (idEdicao) {
+        const index = clientes.findIndex(c => c.id == idEdicao);
+        if (index !== -1) {
+          clientes[index] = { id: Number(idEdicao), nome, email, telefone };
+        }
+        localStorage.removeItem("clienteEmEdicao");
+      } else {
+        const novoCliente = {
+          id: Date.now(),
+          nome,
+          email,
+          telefone
+        };
+        clientes.push(novoCliente);
+      }
+
+      localStorage.setItem("clientes", JSON.stringify(clientes));
+      carregarClientes();
+      document.getElementById("formCliente").reset();
+    }
+
+    function editarCliente(id) {
+      const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      const cliente = clientes.find(c => c.id === id);
+      if (cliente) {
+        document.getElementById("nome").value = cliente.nome;
+        document.getElementById("email").value = cliente.email;
+        document.getElementById("telefone").value = cliente.telefone;
+        localStorage.setItem("clienteEmEdicao", id);
+      }
+    }
+
+    function excluirCliente(id) {
+      let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      clientes = clientes.filter(cliente => cliente.id !== id);
+      localStorage.setItem("clientes", JSON.stringify(clientes));
+      carregarClientes();
+    }
+
+    window.onload = carregarTudo;
+  </script>
+</body>
+</html>
