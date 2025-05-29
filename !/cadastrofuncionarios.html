@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Funcionários</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f8f8f8, #0a0a0a);
+      padding: 30px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px 35px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 28px;
+      color: #f1c40f;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      margin-bottom: 12px;
+      outline: none;
+      box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    select option {
+      color: #000;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #f1c40f;
+      color: #1b4f72;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #d4ac0d;
+      transform: translateY(-2px);
+    }
+
+    .mensagem {
+      margin-top: 20px;
+      font-size: 15px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .mensagem.red {
+      color: #ff5e57;
+    }
+
+    .mensagem.orange {
+      color: #f39c12;
+    }
+
+    .mensagem.green {
+      color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Funcionários</h2>
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite o nome completo">
+
+    <label for="CPF">CPF:</label>
+    <input type="text" id="CPF" placeholder="Digite seu CPF">
+
+    <label for="Setor">Setor:</label>
+    <select id="Setor">
+      <option value="Compras">Compras</option>
+      <option value="Comercial">Comercial</option>
+      <option value="Logistica">Logistica</option>
+    </select>
+
+    <label for="funcao">Função:</label>
+    <select id="funcao">
+      <option value="Vendedor">Funcionário</option>
+      <option value="Analista Logistico">Logística</option>
+      <option value="Gerente">Gerente</option>
+      <option value="Analista de dados">Analista de Dados</option>
+    </select>
+
+    <button onclick="adicionarCadastro()">Cadastrar</button>
+
+    <div class="mensagem" id="mensagem"></div>
+  </div>
+
+  <script>
+    const restritas = ["Gerente", "Analista de dados", "Responsavel"];
+    let cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+    let notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+    function adicionarCadastro() {
+      const nome = document.getElementById("nome").value.trim();
+      const cpf = document.getElementById("CPF").value.trim();
+      const sexo = document.getElementById("Setor").value;
+      const funcao = document.getElementById("funcao").value;
+      const msg = document.getElementById("mensagem");
+
+      msg.className = "mensagem";
+
+      if (!nome || !cpf) {
+        msg.classList.add("red");
+        msg.innerText = "Por favor, preencha todos os campos corretamente.";
+        return;
+      }
+
+      if (restritas.includes(funcao)) {
+        notificacoes.push({
+          nome,
+          cpf,
+          sexo,
+          funcao,
+          data: new Date().toLocaleString()
+        });
+        localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+        msg.classList.add("orange");
+        msg.innerText = `Função "${funcao}" requer aprovação. Solicitação enviada ao Responsável.`;
+        document.getElementById("nome").value = "";
+        document.getElementById("CPF").value = "";
+        return;
+      }
+
+      cadastros.push([nome, cpf, sexo, funcao]);
+      localStorage.setItem("cadastros", JSON.stringify(cadastros));
+      msg.classList.add("green");
+      msg.innerText = "Cadastro realizado com sucesso!";
+      document.getElementById("nome").value = "";
+      document.getElementById("CPF").value = "";
+    }
+  </script>
+</body>
+</html>
