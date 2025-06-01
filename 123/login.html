@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Negrão</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .background {
+      background: url('img.png') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 40px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select {
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .switch a {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="overlay">
+      <form class="login-box" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" placeholder="Usuário" id="usuarioLogin" required />
+        <input type="password" placeholder="Senha" id="senhaLogin" required />
+        <button type="submit" id="loginButton">ENTRAR</button>
+        <p class="switch">Não tem uma conta? <a href="#" onclick="toggleForm('cliente')">Cadastro Cliente</a></p>
+      </form>
+
+      <form class="login-box hidden" id="clienteForm">
+        <h2>Cadastro Cliente</h2>
+        <input type="text" placeholder="Nome Completo" id="nomeCliente" required />
+        <input type="text" placeholder="CPF" id="cpfCliente" required />
+        <input type="text" placeholder="Telefone" id="telefoneCliente" required />
+        <input type="email" placeholder="E-mail" id="emailCliente" required />
+        <input type="text" placeholder="Endereço" id="enderecoCliente" required />
+        <input type="text" placeholder="Número da Casa" id="numeroCasaCliente" required />
+        <input type="text" placeholder="CEP" id="cepCliente" required />
+        <input type="text" placeholder="Usuário" id="usuarioCliente" required />
+        <input type="password" placeholder="Senha" id="senhaCliente" required />
+        <input type="password" placeholder="Confirmar Senha" id="confirmarSenhaCliente" required />
+        <button type="submit">CADASTRAR</button>
+        <p class="switch">Já tem uma conta? <a href="#" onclick="toggleForm('login')">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+    let logins = JSON.parse(localStorage.getItem('logins')) || 0;
+
+    function toggleForm(form) {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('clienteForm').classList.add('hidden');
+      if (form === 'login') {
+        document.getElementById('loginForm').classList.remove('hidden');
+      } else {
+        document.getElementById('clienteForm').classList.remove('hidden');
+      }
+    }
+
+    document.getElementById("clienteForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const senha = document.getElementById("senhaCliente").value;
+      const confirmarSenha = document.getElementById("confirmarSenhaCliente").value;
+
+      if (senha !== confirmarSenha) {
+        alert("As senhas não coincidem.");
+        return;
+      }
+
+      const cliente = {
+        nome: document.getElementById("nomeCliente").value,
+        cpf: document.getElementById("cpfCliente").value,
+        telefone: document.getElementById("telefoneCliente").value,
+        email: document.getElementById("emailCliente").value,
+        endereco: document.getElementById("enderecoCliente").value,
+        cep: document.getElementById("cepCliente").value,
+        numeroCasa: document.getElementById("numeroCasaCliente").value,
+        usuario: document.getElementById("usuarioCliente").value,
+        senha: senha
+      };
+
+      if (clientes.some(c => c.usuario === cliente.usuario)) {
+        alert("Usuário já cadastrado. Escolha outro usuário.");
+        return;
+      }
+
+      clientes.push(cliente);
+      localStorage.setItem('clientes', JSON.stringify(clientes));
+
+      window.location.href = "sucesso.html";
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const usuarioLogin = document.getElementById("usuarioLogin").value;
+      const senhaLogin = document.getElementById("senhaLogin").value;
+
+      const usuario = clientes.find(cliente => cliente.usuario === usuarioLogin && cliente.senha === senhaLogin);
+
+      if (usuario) {
+        logins += 1;
+        localStorage.setItem('logins', JSON.stringify(logins));
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuario)); // **Salva o usuário logado**
+        alert("Login efetuado com sucesso!");
+        window.location.href = 'pagamento.html';  
+      } else {
+        alert("Usuário ou senha incorretos.");
+      }
+    });
+  </script>
+</body>
+</html>
