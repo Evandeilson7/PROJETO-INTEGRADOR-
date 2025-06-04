@@ -1,0 +1,111 @@
+[
+{
+  "id": 101,
+  "name": "Tinta Acrílica Premium 18L",
+  "price": 299.90,
+  "oldPrice": 399.90,
+  "desc": "Tinta acrílica lavável com alto rendimento.",
+  "discount": 25,
+  "img": "imagemjpeg/101.png"
+},
+
+  {
+    "id": 102,
+    "name": "Tinta Látex Fosca 3,6L",
+    "price": 89.90,
+    "oldPrice": 119.90,
+    "desc": "Acabamento fosco, ideal para interiores.",
+    "discount": 25,
+    "img": "imagemjpeg/102.png"
+  },
+  {
+    "id": 103,
+    "name": "Tinta Epóxi 900ml",
+    "price": 49.90,
+    "oldPrice": 54.89,
+    "desc": "Para superfícies metálicas e industriais.",
+    "discount": 10,
+    "img": "imagemjpeg/103.png"
+  },
+  {
+    "id": 104,
+    "name": "Spray Tinta Spray Automotiva",
+    "price": 29.90,
+    "oldPrice": 39.90,
+    "desc": "Ideal para retoques e acabamentos precisos.",
+    "discount": 25,
+    "img": "imagemjpeg/104.png"
+  },
+  {
+    "id": 105,
+    "name": "Tinta Esmalte Sintético 3,6L",
+    "price": 109.90,
+    "oldPrice": 149.90,
+    "desc": "Durável e brilhante para madeiras e metais.",
+    "discount": 27,
+    "img": "imagemjpeg/105.png"
+  },
+  {
+    "id": 106,
+    "name": "Tinta Spray Fosca 400ml",
+    "price": 24.90,
+    "oldPrice": 28.63,
+    "desc": "Acabamento fosco, resistente à água.",
+    "discount": 15,
+    "img": "imagemjpeg/106.png"
+  },
+  {
+    "id": 107,
+    "name": "Tinta Acrílica Branca 3,6L",
+    "price": 99.90,
+    "oldPrice": 129.90,
+    "desc": "Acabamento acetinado, fácil de aplicar.",
+    "discount": 23,
+    "img": "imagemjpeg/107.png"
+  },
+  {
+    "id": 108,
+    "name": "Tinta Fosca Azul 3,6L",
+    "price": 99.90,
+    "oldPrice": 119.90,
+    "desc": "Ideal para quartos e salas.",
+    "discount": 16,
+    "img": "imagemjpeg/108.png"
+  },
+  {
+    "id": 109,
+    "name": "Tinta Esmalte Sintético Branca 3,6L",
+    "price": 115.90,
+    "oldPrice": 145.90,
+    "desc": "Brilho intenso para superfícies de madeira.",
+    "discount": 20,
+    "img": "imagemjpeg/109.png"
+  },
+  {
+    "id": 110,
+    "name": "Tinta Acrílica Fosca 18L",
+    "price": 280.00,
+    "oldPrice": 350.00,
+    "desc": "Cobertura fosca e resistente.",
+    "discount": 20,
+    "img": "imagemjpeg/110.png"
+  },
+  {
+    "id": 111,
+    "name": "Tinta Látex Semi-Brilho 3,6L",
+    "price": 98.90,
+    "oldPrice": 130.00,
+    "desc": "Ideal para áreas internas com leve brilho.",
+    "discount": 24,
+    "img": "imagemjpeg/111.png"
+  },
+  {
+    "id": 112,
+    "name": "Tinta Epóxi Industrial 5L",
+    "price": 189.90,
+    "oldPrice": 239.90,
+    "desc": "Alta resistência para ambientes industriais.",
+    "discount": 20,
+    "img": "imagemjpeg/112.png"
+  }
+]

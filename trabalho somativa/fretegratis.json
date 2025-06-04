@@ -1,0 +1,170 @@
+[
+{
+    "id": 401,
+    "name": "Chave de Fenda Philips 6mm",
+    "price": 12.50,
+    "desc": "Ideal para parafusos Philips com alta durabilidade.",
+    "img": "imagemjpeg/401.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 402,
+    "name": "Alicate Universal 8\"",
+    "price": 35.90,
+    "desc": "Alicate multiuso para corte e aperto com cabo anatômico.",
+    "img": "imagemjpeg/402.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 403,
+    "name": "Martelo de Unha 500g",
+    "price": 28.00,
+    "desc": "Martelo resistente para uso em carpintaria e construção.",
+    "img": "imagemjpeg/403.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 404,
+    "name": "Furadeira Sem Fio 12V",
+    "price": 180.00,
+    "desc": "Furadeira portátil com bateria recarregável e luz LED.",
+    "img": "imagemjpeg/404.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 405,
+    "name": "Serra Tico-Tico Elétrica 600W",
+    "price": 230.00,
+    "desc": "Corte preciso para madeira e plástico com controle de velocidade.",
+    "img": "imagemjpeg/405.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 406,
+    "name": "Trena de Aço 5m",
+    "price": 22.50,
+    "desc": "Trena resistente com trava e fita métrica em centímetros e polegadas.",
+    "img": "imagemjpeg/406.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 407,
+    "name": "Lixa para Madeira 120 Grit",
+    "price": 8.90,
+    "desc": "Lixa para acabamento e polimento em superfícies de madeira.",
+    "img": "imagemjpeg/407.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 408,
+    "name": "Estilete Retrátil",
+    "price": 14.00,
+    "desc": "Corte seguro e prático com lâmina retrátil e trocável.",
+    "img": "imagemjpeg/408.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 409,
+    "name": "Chave Inglesa Ajustável 10\"",
+    "price": 45.00,
+    "desc": "Ferramenta ajustável para diversas medidas de parafusos.",
+    "img": "imagemjpeg/409.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 410,
+    "name": "Caixa de Ferramentas com 42 Peças",
+    "price": 150.00,
+    "desc": "Kit completo para manutenção e reparos em geral.",
+    "img": "imagemjpeg/410.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 500,
+    "name": "Parafuso de Aço Galvanizado",
+    "price": 0.10,
+    "desc": "Parafuso resistente para fixações gerais.",
+    "img": "imagemjpeg/500.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 501,
+    "name": "Porca Sextavada M8",
+    "price": 0.08,
+    "desc": "Porca para parafusos M8, alta resistência.",
+    "img": "imagemjpeg/501.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 502,
+    "name": "Arruela Lisa 1/2\"",
+    "price": 0.05,
+    "desc": "Arruela para uso em parafusos e porcas, material aço.",
+    "img": "imagemjpeg/502.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 503,
+    "name": "Dobradiça de Aço 4\"",
+    "price": 12.50,
+    "desc": "Dobradiça resistente para portas e portões.",
+    "img": "imagemjpeg/503.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 504,
+    "name": "Cadeado de Latão 40mm",
+    "price": 25.00,
+    "desc": "Cadeado com corpo de latão para segurança geral.",
+    "img": "imagemjpeg/504.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 505,
+    "name": "Perfil de Alumínio 2m",
+    "price": 50.00,
+    "desc": "Perfil leve e resistente para acabamentos e estruturas.",
+    "img": "imagemjpeg/505.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 506,
+    "name": "Cantoneira Metálica 3x3x0,3m",
+    "price": 30.00,
+    "desc": "Cantoneira para reforço estrutural e montagem.",
+    "img": "imagemjpeg/506.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 507,
+    "name": "Tubo Galvanizado 1\" - 3m",
+    "price": 75.00,
+    "desc": "Tubo resistente para condução e estruturas metálicas.",
+    "img": "imagemjpeg/507.png",
+    "freteGratis": "true"
+  },
+  {
+    "id": 508,
+    "name": "Chapa de Aço 1,5mm - 2m²",
+    "price": 120.00,
+    "desc": "Chapa de aço para fabricação e reparos diversos.",
+    "img": "imagemjpeg/508.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 509,
+    "name": "Bucha de Fixação Nylon 10mm",
+    "price": 0.15,
+    "desc": "Bucha para fixação em paredes de alvenaria.",
+    "img": "imagemjpeg/509.png",
+    "freteGratis": "false"
+  },
+  {
+    "id": 510,
+    "name": "Abraçadeira Metálica Ajustável",
+    "price": 5.00,
+    "desc": "Abraçadeira para fixação e organização de cabos e tubos.",
+    "img": "imagemjpeg/510.png",
+    "freteGratis": "true"
+  }
+]

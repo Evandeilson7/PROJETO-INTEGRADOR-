@@ -1,0 +1,73 @@
+ [
+ {
+    "id": 301,
+    "name": "Torneira Gourmet Flexível Preta",
+    "price": 219.90,
+    "desc": "Design moderno e bico flexível para facilitar a limpeza.",
+    "img": "imagemjpeg/301.png"
+  },
+  {
+    "id": 302,
+    "name": "Luminária LED Pendente Industrial",
+    "price": 189.90,
+    "desc": "Estilo industrial ideal para cozinhas e salas de jantar.",
+    "img": "imagemjpeg/302.png"
+  },
+  {
+    "id": 303,
+    "name": "Fechadura Digital com Senha Touch",
+    "price": 649.90,
+    "desc": "Mais segurança e praticidade com tecnologia moderna.",
+    "img": "imagemjpeg/303.png"
+  },
+  {
+    "id": 304,
+    "name": "Arandela Solar com Sensor de Presença",
+    "price": 89.90,
+    "desc": "Energizada pelo sol e acendimento automático.",
+    "img": "imagemjpeg/304.png"
+  },
+  {
+    "id": 305,
+    "name": "Churrasqueira Portátil a Carvão",
+    "price": 299.90,
+    "desc": "Compacta, ideal para varandas e pequenos espaços.",
+    "img": "imagemjpeg/305.png"
+  },
+  {
+    "id": 306,
+    "name": "Espelho com LED Embutido 60cm",
+    "price": 379.90,
+    "desc": "Elegante e funcional para banheiros modernos.",
+    "img": "imagemjpeg/306.png"
+  },
+  {
+    "id": 307,
+    "name": "Aquecedor Elétrico Cerâmico Portátil",
+    "price": 249.90,
+    "desc": "Compacto e eficiente para aquecer pequenos ambientes.",
+    "img": "imagemjpeg/307.png"
+  },
+  {
+    "id": 308,
+    "name": "Kit Organizador de Gavetas 6 peças",
+    "price": 59.90,
+    "desc": "Ideal para manter gavetas arrumadas e funcionais.",
+    "img": "imagemjpeg/308.png"
+  },
+
+  {
+    "id": 309,
+    "name": "Banqueta Alta com Assento de Couro",
+    "price": 299.90,
+    "desc": "Estilo e conforto para cozinhas americanas.",
+    "img": "imagemjpeg/309.png"
+  },
+  {
+    "id": 310,
+    "name": "Plafon LED Redondo Embutido 24W",
+    "price": 69.90,
+    "desc": "Iluminação moderna com economia de energia.",
+    "img": "imagemjpeg/310.png"
+  }
+]
