@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" type="image/png" href="negrao.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagamento - Finalizar Compra</title>
+  <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+
+<header>
+  <h1>Finalizar Compra</h1>
+</header>
+
+<main>
+  <div class="user-info" id="user-info">
+    Carregando dados do usuário...
+  </div>
+
+  <form id="payment-form">
+    <label for="payment-method">Forma de pagamento:</label>
+    <select id="payment-method" name="payment-method" required>
+      <option value="" disabled selected>Escolha uma opção</option>
+      <option value="credit">Cartão de Crédito</option>
+      <option value="debit">Cartão de Débito</option>
+      <option value="pix">Pix</option>
+    </select>
+
+    <div id="card-data" style="display:none;">
+      <label for="card-number">Número do cartão:</label>
+      <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" pattern="\d{13,19}" maxlength="19" autocomplete="cc-number" />
+
+      <label for="expiry-date">Data de validade:</label>
+      <input type="month" id="expiry-date" name="expiry-date" min="2023-05" />
+
+      <label for="cvv">CVV:</label>
+      <input type="password" id="cvv" name="cvv" placeholder="123" pattern="\d{3,4}" maxlength="4" />
+    </div>
+
+    <div id="pix-data" style="display:none;">
+      <div class="pix-info" style="display:none;" id="pix-info-box">
+        <div>Use o QR Code abaixo para pagar via Pix:</div>
+        <img src="imagens/frame.png" alt="QR Code Pix" />
+      </div>
+    </div>
+
+    <button type="submit">Finalizar Compra</button>
+  </form>
+</main>
+
+<script src="pagamento.js"></script>
+</body>
+</html>
