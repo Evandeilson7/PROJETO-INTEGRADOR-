@@ -1,0 +1,201 @@
+[
+{
+  "id": 101,
+  "name": "Tinta Acrílica Premium 18L",
+  "price": 299.90,
+  "oldPrice": 399.90,
+  "desc": "Tinta acrílica lavável com alto rendimento.",
+  "discount": 25,
+  "img": "imagemjpeg/101.png"
+},
+
+  {
+    "id": 102,
+    "name": "Tinta Látex Fosca 3,6L",
+    "price": 89.90,
+    "oldPrice": 119.90,
+    "desc": "Acabamento fosco, ideal para interiores.",
+    "discount": 25,
+    "img": "imagemjpeg/102.png"
+  },
+  {
+    "id": 103,
+    "name": "Tinta Epóxi 900ml",
+    "price": 49.90,
+    "oldPrice": 54.89,
+    "desc": "Para superfícies metálicas e industriais.",
+    "discount": 10,
+    "img": "imagemjpeg/103.png"
+  },
+  {
+    "id": 104,
+    "name": "Spray Tinta Spray Automotiva",
+    "price": 29.90,
+    "oldPrice": 39.90,
+    "desc": "Ideal para retoques e acabamentos precisos.",
+    "discount": 25,
+    "img": "imagemjpeg/104.png"
+  },
+  {
+    "id": 105,
+    "name": "Tinta Esmalte Sintético 3,6L",
+    "price": 109.90,
+    "oldPrice": 149.90,
+    "desc": "Durável e brilhante para madeiras e metais.",
+    "discount": 27,
+    "img": "imagemjpeg/105.png"
+  },
+  {
+    "id": 106,
+    "name": "Tinta Spray Fosca 400ml",
+    "price": 24.90,
+    "oldPrice": 28.63,
+    "desc": "Acabamento fosco, resistente à água.",
+    "discount": 15,
+    "img": "imagemjpeg/106.png"
+  },
+  {
+    "id": 107,
+    "name": "Tinta Acrílica Branca 3,6L",
+    "price": 99.90,
+    "oldPrice": 129.90,
+    "desc": "Acabamento acetinado, fácil de aplicar.",
+    "discount": 23,
+    "img": "imagemjpeg/107.png"
+  },
+  {
+    "id": 108,
+    "name": "Tinta Fosca Azul 3,6L",
+    "price": 99.90,
+    "oldPrice": 119.90,
+    "desc": "Ideal para quartos e salas.",
+    "discount": 16,
+    "img": "imagemjpeg/108.png"
+  },
+  {
+    "id": 109,
+    "name": "Tinta Esmalte Sintético Branca 3,6L",
+    "price": 115.90,
+    "oldPrice": 145.90,
+    "desc": "Brilho intenso para superfícies de madeira.",
+    "discount": 20,
+    "img": "imagemjpeg/109.png"
+  },
+  {
+    "id": 110,
+    "name": "Tinta Acrílica Fosca 18L",
+    "price": 280.00,
+    "oldPrice": 350.00,
+    "desc": "Cobertura fosca e resistente.",
+    "discount": 20,
+    "img": "imagemjpeg/110.png"
+  },
+  {
+    "id": 111,
+    "name": "Tinta Látex Semi-Brilho 3,6L",
+    "price": 98.90,
+    "oldPrice": 130.00,
+    "desc": "Ideal para áreas internas com leve brilho.",
+    "discount": 24,
+    "img": "imagemjpeg/111.png"
+  },
+  {
+    "id": 112,
+    "name": "Tinta Epóxi Industrial 5L",
+    "price": 189.90,
+    "oldPrice": 239.90,
+    "desc": "Alta resistência para ambientes industriais.",
+    "discount": 20,
+    "img": "imagemjpeg/112.png"
+  },
+  {
+    "id": 201,
+    "name": "Furadeira de Impacto 650W",
+    "price": 229.90,
+    "oldPrice": 299.90,
+    "desc": "Compacta e potente para serviços domésticos.",
+    "discount": 23,
+    "img": "imagemjpeg/201.png"
+  },
+  {
+    "id": 202,
+    "name": "Lâmpada LED 9W Branco Frio",
+    "price": 7.90,
+    "oldPrice": 11.90,
+    "desc": "Econômica e com alta durabilidade.",
+    "discount": 34,
+    "img": "imagemjpeg/202.png"
+  },
+  {
+    "id": 203,
+    "name": "Chuveiro Elétrico 5500W 220V",
+    "price": 89.90,
+    "oldPrice": 119.90,
+    "desc": "Jato forte e 4 temperaturas para conforto ideal.",
+    "discount": 25,
+    "img": "imagemjpeg/203.png"
+  },
+  {
+    "id": 204,
+    "name": "Organizador Multiuso com Tampa",
+    "price": 39.90,
+    "oldPrice": 54.90,
+    "desc": "Ideal para guardar objetos e otimizar espaço.",
+    "discount": 27,
+    "img": "imagemjpeg/204.png"
+  },
+  {
+    "id": 205,
+    "name": "Extensão Elétrica 3 Tomadas 3m",
+    "price": 24.90,
+    "oldPrice": 29.90,
+    "desc": "Fio flexível e resistente com proteção.",
+    "discount": 17,
+    "img": "imagemjpeg/205.png"
+  },
+  {
+    "id": 206,
+    "name": "Mangueira Jardim 15m com Esguicho",
+    "price": 69.90,
+    "oldPrice": 89.90,
+    "desc": "Resistente e flexível para irrigação eficiente.",
+    "discount": 22,
+    "img": "imagemjpeg/206.png"
+  },
+  {
+    "id": 207,
+    "name": "Ventilador de Mesa 40cm 6 pás",
+    "price": 129.90,
+    "oldPrice": 169.90,
+    "desc": "Silencioso e com ótima ventilação.",
+    "discount": 24,
+    "img": "imagemjpeg/207.png"
+  },
+  {
+    "id": 208,
+    "name": "Espelho de Parede Redondo 50cm",
+    "price": 99.90,
+    "oldPrice": 129.90,
+    "desc": "Design moderno para decoração.",
+    "discount": 23,
+    "img": "imagemjpeg/208.png"
+  },
+  {
+    "id": 209,
+    "name": "Fechadura Externa Cromada",
+    "price": 59.90,
+    "oldPrice": 74.90,
+    "desc": "Segurança e resistência com design elegante.",
+    "discount": 20,
+    "img": "imagemjpeg/209.png"
+  },
+  {
+    "id": 210,
+    "name": "Lixeira Inox com Pedal 5L",
+    "price": 64.90,
+    "oldPrice": 89.90,
+    "desc": "Compacta e prática para banheiros ou cozinhas.",
+    "discount": 28,
+    "img": "imagemjpeg/210.png"
+  }
+]

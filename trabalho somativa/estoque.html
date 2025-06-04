@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="negrao.png">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-gear" viewBox="0 0 16 16">
+  <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708z"/>
+  <path d="M11.886 9.46c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.044c-.613-.181-.613-1.049 0-1.23l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+</svg><title>Controle de Estoque</title>
+    <link rel="stylesheet" href="estoque.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Controle de Estoque</h1>
+
+        
+        <div class="card">
+            <h2>➕ Adicionar Produto</h2>
+            <form id="formProduto">
+                <input type="hidden" id="produtoId" name="id">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="quantidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço (R$):</label>
+                    <input type="number" step="0.01" id="preco" name="preco" required placeholder="Use ponto (.)">
+                </div>
+                <button type="submit" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnCancelar">Cancelar</button>
+            </form>
+        </div>
+
+      
+        <div class="card">
+            <h2>🔄 Movimentação</h2>
+            <form id="formMovimentacao">
+                <div class="form-group">
+                    <label for="selectProduto">Produto:</label>
+                    <select id="selectProduto" name="produtoId" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="entrada">Entrada</option>
+                        <option value="saida">Saída</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="qtdMov">Quantidade:</label>
+                    <input type="number" id="qtdMov" name="quantidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="motivo">Motivo:</label>
+                    <input type="text" id="motivo" name="motivo">
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+       
+        <div class="card">
+            <h2>🔍 Buscar Produtos</h2>
+            <input type="text" id="inputBusca" placeholder="Digite o nome ou código...">
+        </div>
+
+        <div class="card">
+            <h2>📋 Produtos em Estoque</h2>
+            <table id="tabelaProdutos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+       
+        <div class="card">
+            <h2>📊 Análise de Movimentações</h2>
+            <div class="chart-tabs">
+                <button class="tab-btn active" data-chart="bar">Barras</button>
+                <button class="tab-btn" data-chart="line">Linhas</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="graficoMovimentacoes"></canvas>
+            </div>
+            <div class="chart-filters">
+                <label for="dataInicio">De:</label>
+                <input type="date" id="dataInicio">
+                <label for="dataFim">Até:</label>
+                <input type="date" id="dataFim">
+                <button id="btnFiltrar">Filtrar</button>
+                <button id="btnResetar">Resetar</button>
+            </div>
+        </div>
+
+        
+        <div class="card">
+            <h2>🔁 Backup dos Dados</h2>
+            <button id="btnExportar">Exportar Dados (JSON)</button>
+            <button id="btnImportar">Importar Dados</button>
+            <input type="file" id="inputImportar" accept=".json" style="display: none;">
+        </div>
+    </div>
+
+    <script src="estoque.js"></script>
+</body>
+</html>

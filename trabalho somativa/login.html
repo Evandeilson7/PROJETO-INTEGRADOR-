@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Negrão</title>
+  <link rel="icon" type="image/png" href="negrao.png" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="background">
+    <div class="overlay">
+      <form class="login-box" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" placeholder="Usuário" id="usuarioLogin" required />
+        <input type="password" placeholder="Senha" id="senhaLogin" required />
+        <button type="submit" id="loginButton">ENTRAR</button>
+        <p class="switch">
+          Não tem uma conta? 
+          <a href="#" onclick="toggleForm('cliente')">Cadastro Cliente</a>
+        </p>
+      </form>
+
+      <form class="login-box hidden" id="clienteForm">
+        <h2>Cadastro Cliente</h2>
+        <input type="text" placeholder="Nome Completo" id="nomeCliente" required />
+        <input type="text" placeholder="CPF" id="cpfCliente" required />
+        <input type="text" placeholder="Telefone" id="telefoneCliente" required />
+        <input type="email" placeholder="E-mail" id="emailCliente" required />
+        <input type="text" placeholder="Endereço" id="enderecoCliente" required />
+        <input type="text" placeholder="Número da Casa" id="numeroCasaCliente" required />
+        <input type="text" placeholder="CEP" id="cepCliente" required />
+        <input type="text" placeholder="Usuário" id="usuarioCliente" required />
+        <input type="password" placeholder="Senha" id="senhaCliente" required />
+        <input type="password" placeholder="Confirmar Senha" id="confirmarSenhaCliente" required />
+        <button type="submit">CADASTRAR</button>
+        <p class="switch">
+          Já tem uma conta? 
+          <a href="#" onclick="toggleForm('login')">Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

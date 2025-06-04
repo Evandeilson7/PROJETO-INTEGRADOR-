@@ -1,0 +1,42 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Chave de Fenda",
+      "codigo": "CF000",
+      "quantidade": 15,
+      "preco": 6.00
+    },
+    {
+      "id": "2",
+      "nome": "Martelo",
+      "codigo": "MT001",
+      "quantidade": 10,
+      "preco": 25.90
+    },
+    {
+      "id": "3",
+      "nome": "Alicate",
+      "codigo": "AC002",
+      "quantidade": 20,
+      "preco": 35.90
+    },
+    {
+      "id": "4",
+      "nome": "Chave Phillips",
+      "codigo": "CP003",
+      "quantidade": 10,
+      "preco": 10.99
+    }
+  ],
+  "movimentacoes": [
+    {
+      "id": "1",
+      "produtoId": "1",
+      "tipo": "entrada",
+      "quantidade": 0,
+      "motivo": "Compra inicial",
+      "data": "2025-10-01T10:00:00Z"
+    }
+  ]
+}
