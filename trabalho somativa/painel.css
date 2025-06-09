@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1b4f72, #283e51);
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.tabs button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 10px;
+  background: #f1c40f;
+  color: #1b4f72;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tabs button.active {
+  background: #d4ac0d;
+}
+.panel {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.panel.active {
+  display: block;
+}
+table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #fff;
+  text-align: left;
+}
+.hidden { display: none; }
+.mensagem { margin-top: 10px; font-weight: bold; text-align: center; }
+.vazio { text-align: center; font-style: italic; color: #ccc; }
+.item { background: rgba(255, 255, 255, 0.15); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+.item span { font-size: 14px; display: block; }
+button.small { padding: 5px 10px; font-size: 14px; margin: 0 5px; }

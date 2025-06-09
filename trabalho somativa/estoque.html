@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Controle de Estoque</title>
+  <link rel="icon" href="negrao.png" type="image/png" />
+  <link rel="stylesheet" href="estoque.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <main class="container" role="main">
+    <header>
+      <h1>📦 Controle de Estoque</h1>
+    </header>
+
+    <section class="card" aria-labelledby="adicionar-produto-title">
+      <h2 id="adicionar-produto-title">➕ Adicionar Produto</h2>
+      <form id="formProduto" novalidate>
+        <input type="hidden" id="produtoId" name="id" />
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="codigo">Código:</label>
+          <input type="text" id="codigo" name="codigo" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="quantidade">Quantidade:</label>
+          <input type="number" id="quantidade" name="quantidade" required min="0" />
+        </div>
+        <div class="form-group">
+          <label for="preco">Preço (R$):</label>
+          <input
+            type="number"
+            id="preco"
+            name="preco"
+            step="0.01"
+            required
+            placeholder="Use ponto (.)"
+            min="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="localizacao">Localização:</label>
+          <input
+            type="text"
+            id="localizacao"
+            name="localizacao"
+            required
+            autocomplete="off"
+            value="Galpão 1 - Campinas, SP"
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="btnSalvar">Salvar</button>
+          <button type="button" id="btnCancelar" class="btn-cancelar" style="display:none;">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="movimentacao-title">
+      <h2 id="movimentacao-title">🔄 Movimentação</h2>
+      <form id="formMovimentacao" novalidate>
+        <div class="form-group">
+          <label for="selectProduto">Produto:</label>
+          <select id="selectProduto" name="produtoId" required>
+            <option value="">Selecione...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipo">Tipo:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="qtdMov">Quantidade:</label>
+          <input type="number" id="qtdMov" name="quantidade" required min="1" />
+        </div>
+        <div class="form-group">
+          <label for="motivo">Motivo:</label>
+          <input type="text" id="motivo" name="motivo" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="localizacaoOrigem">Origem:</label>
+          <input type="text" id="localizacaoOrigem" name="localizacaoOrigem" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="localizacaoDestino">Destino:</label>
+          <select id="localizacaoDestino" name="localizacaoDestino" required>
+            <option value="Galpão 1 - Campinas, SP">Galpão 1 - Campinas, SP</option>
+            <option value="Galpão 2 - São Paulo, SP">Galpão 2 - São Paulo, SP</option>
+            <option value="Loja - Ribeirão Preto, SP">Loja - Ribeirão Preto, SP</option>
+            <option value="OUTRO">Outro (especificar)</option>
+          </select>
+          <input
+            type="text"
+            id="outraLocalizacao"
+            name="outraLocalizacao"
+            placeholder="Digite a localização"
+            style="display: none; margin-top: 0.3rem;"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Registrar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="buscar-produtos-title">
+      <h2 id="buscar-produtos-title">🔍 Buscar Produtos</h2>
+      <input
+        type="search"
+        id="inputBusca"
+        placeholder="Digite o nome ou código..."
+        aria-label="Buscar produtos"
+        autocomplete="off"
+      />
+    </section>
+
+    <section class="card" aria-label="Produtos em estoque" role="region" tabindex="0">
+      <h2>📋 Produtos em Estoque</h2>
+      <table id="tabelaProdutos" role="grid" aria-describedby="descTabelaProdutos">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Código</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Localização</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="card" aria-labelledby="analise-movimentacoes-title">
+      <h2 id="analise-movimentacoes-title">📊 Análise de Movimentações</h2>
+      <nav class="chart-tabs" role="tablist" aria-label="Tipos de gráficos">
+        <button class="tab-btn active" data-chart="bar" role="tab" aria-selected="true" id="chart-tab-bar">
+          Barras
+        </button>
+        <button class="tab-btn" data-chart="line" role="tab" aria-selected="false" id="chart-tab-line">
+          Linhas
+        </button>
+      </nav>
+      <div class="chart-container">
+        <canvas id="graficoMovimentacoes"></canvas>
+      </div>
+      <form class="chart-filters">
+        <label for="dataInicio">De:</label>
+        <input type="date" id="dataInicio" />
+        <label for="dataFim">Até:</label>
+        <input type="date" id="dataFim" />
+        <button type="button" id="btnFiltrar">Filtrar</button>
+        <button type="button" id="btnResetar">Resetar</button>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="backup-dados-title">
+      <h2 id="backup-dados-title">🔁 Backup dos Dados</h2>
+      <button id="btnExportar">Exportar Dados (JSON)</button>
+      <button id="btnImportar">Importar Dados</button>
+      <input type="file" id="inputImportar" accept=".json" style="display: none" />
+    </section>
+  </main>
+
+  <div id="rastreio-modal" class="modal">
+    <div class="modal-content">
+      <button class="close" aria-label="Fechar modal" onclick="fecharModalRastreio()">&times;</button>
+      <h2>🚚 Histórico de Movimentações</h2>
+      <div id="rastreio-conteudo"></div>
+    </div>
+  </div>
+
+  <script src="estoque.js"></script>
+</body>
+</html>
