@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #1b4f72, #283e51);
+  background: linear-gradient(135deg, #000000, #636363);
   color: #fff;
   min-height: 100vh;
   padding: 20px;
@@ -20,13 +20,13 @@ body {
   margin: 0 10px;
   border: none;
   border-radius: 10px;
-  background: #f1c40f;
-  color: #1b4f72;
+  background: #ffffff;
+  color: hsl(0, 0%, 42%);
   font-weight: bold;
   cursor: pointer;
 }
 .tabs button.active {
-  background: #d4ac0d;
+  background: #c5c5c5;
 }
 .panel {
   display: none;
